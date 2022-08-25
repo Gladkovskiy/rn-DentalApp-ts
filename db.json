@@ -1,0 +1,203 @@
+{
+  "user": [
+    {
+      "id": 0,
+      "fullname": "Mcconnell Woodward",
+      "avatar": "https://picsum.photos/100",
+      "phone": "+380 850-360-141"
+    },
+    {
+      "id": 1,
+      "fullname": "Solis Justice",
+      "avatar": "https://picsum.photos/100",
+      "phone": "+380 166-601-750"
+    },
+    {
+      "id": 2,
+      "fullname": "Christa Rogers",
+      "avatar": "https://source.unsplash.com/random/100x100?face",
+      "phone": "+380 563-238-258"
+    },
+    {
+      "id": 3,
+      "fullname": "Mayra Chavez",
+      "avatar": "https://source.unsplash.com/random/100x100?face",
+      "phone": "+380 911-221-220"
+    },
+    {
+      "id": 4,
+      "fullname": "Fuentes Allen",
+      "avatar": "https://source.unsplash.com/random/100x100?face",
+      "phone": "+380 848-156-321"
+    },
+    {
+      "id": 5,
+      "fullname": "Lawrence Patterson",
+      "avatar": "https://source.unsplash.com/random/100x100?face",
+      "phone": "+380 710-788-557"
+    },
+    {
+      "id": 6,
+      "fullname": "Holloway Carrillo",
+      "avatar": "https://source.unsplash.com/random/100x100?face",
+      "phone": "+380 315-159-195"
+    },
+    {
+      "id": 7,
+      "fullname": "Elba Adams",
+      "avatar": "https://source.unsplash.com/random/100x100?face",
+      "phone": "+380 369-938-250"
+    },
+    {
+      "id": 8,
+      "fullname": "Zamora Conley",
+      "avatar": "https://source.unsplash.com/random/100x100?face",
+      "phone": "+380 714-504-940"
+    },
+    {
+      "id": 9,
+      "fullname": "Bettie Mack",
+      "avatar": "https://source.unsplash.com/random/100x100?face",
+      "phone": "+380 244-713-867"
+    }
+  ],
+  "appointment": [
+    {
+      "id": 0,
+      "user_id": 1,
+      "diagnos_id": 0,
+      "isActive": false,
+      "time": "14:06",
+      "date": "2022-09-16T04:29:19.048Z"
+    },
+    {
+      "id": 1,
+      "user_id": 4,
+      "diagnos_id": 2,
+      "isActive": false,
+      "time": "14:02",
+      "date": "2022-09-12T21:32:21.200Z"
+    },
+    {
+      "id": 2,
+      "user_id": 7,
+      "diagnos_id": 1,
+      "isActive": false,
+      "time": "12:18",
+      "date": "2022-09-12T13:42:07.865Z"
+    },
+    {
+      "id": 3,
+      "user_id": 2,
+      "diagnos_id": 0,
+      "isActive": false,
+      "time": "14:35",
+      "date": "2022-09-12T13:07:04.624Z"
+    },
+    {
+      "id": 4,
+      "user_id": 6,
+      "diagnos_id": 0,
+      "isActive": false,
+      "time": "13:58",
+      "date": "2022-09-12T09:21:23.683Z"
+    },
+    {
+      "id": 5,
+      "user_id": 8,
+      "diagnos_id": 0,
+      "isActive": false,
+      "time": "12:08",
+      "date": "2022-09-14T04:12:33.871Z"
+    },
+    {
+      "id": 6,
+      "user_id": 0,
+      "diagnos_id": 0,
+      "isActive": false,
+      "time": "11:24",
+      "date": "2022-09-13T12:57:14.162Z"
+    },
+    {
+      "id": 7,
+      "user_id": 9,
+      "diagnos_id": 1,
+      "isActive": false,
+      "time": "12:06",
+      "date": "2022-09-12T14:13:39.229Z"
+    },
+    {
+      "id": 8,
+      "user_id": 4,
+      "diagnos_id": 1,
+      "isActive": false,
+      "time": "17:08",
+      "date": "2022-09-12T19:41:28.723Z"
+    },
+    {
+      "id": 9,
+      "user_id": 8,
+      "diagnos_id": 0,
+      "isActive": false,
+      "time": "16:00",
+      "date": "2022-09-14T06:07:07.660Z"
+    },
+    {
+      "id": 10,
+      "user_id": 2,
+      "diagnos_id": 2,
+      "isActive": false,
+      "time": "13:08",
+      "date": "2022-09-14T23:02:12.499Z"
+    },
+    {
+      "id": 11,
+      "user_id": 4,
+      "diagnos_id": 2,
+      "isActive": false,
+      "time": "09:51",
+      "date": "2022-09-13T20:59:07.943Z"
+    },
+    {
+      "id": 12,
+      "user_id": 4,
+      "diagnos_id": 0,
+      "isActive": false,
+      "time": "12:49",
+      "date": "2022-09-13T09:21:23.679Z"
+    },
+    {
+      "id": 13,
+      "user_id": 5,
+      "diagnos_id": 0,
+      "isActive": false,
+      "time": "15:49",
+      "date": "2022-09-12T20:21:10.022Z"
+    },
+    {
+      "id": 14,
+      "user_id": 4,
+      "diagnos_id": 1,
+      "isActive": false,
+      "time": "15:52",
+      "date": "2022-09-14T22:45:55.340Z"
+    }
+  ],
+  "servicePrice": [
+    {
+      "id": 0,
+      "diagnos": "удаление",
+      "price": "1200 грн"
+    },
+    {
+      "id": 1,
+      "diagnos": "пульпит",
+      "price": "1500 грн"
+    },
+    {
+      "id": 2,
+      "diagnos": "наращивание",
+      "price": "2000 грн"
+    }
+  ]
+}
