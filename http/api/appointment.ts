@@ -1,15 +1,7 @@
 import {$host} from '.'
-import {
-  IGetUser,
-  IServicePrice,
-  IAppointment,
-  IDateInfo,
-  IUserInfo,
-  IUserInfoWithDate,
-} from '../../types/user'
-import {byField} from '../../utils/sort'
+import {IDateInfo} from '../../types/user'
 
-export const getAppointment = async () => {
+/* export const getAppointment = async () => {
   try {
     const {data: users} = await $host.get<IGetUser[]>(`/user`)
 
@@ -55,6 +47,16 @@ export const getAppointment = async () => {
     //первый элемент активный
     info[0].data[0].active = true
     return info
+  } catch (error) {
+    console.log(error)
+  }
+} */
+
+export const getAppointment = async () => {
+  try {
+    const {data} = await $host.get<IDateInfo[]>('/appoinment')
+    console.log(data)
+    return data
   } catch (error) {
     console.log(error)
   }

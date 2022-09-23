@@ -1,2 +1,4 @@
 https://source.unsplash.com/random/100x100?face
-json-server --watch db.json
+json-server --watch db.json 
+baseURL: 'http://10.0.2.2:3000' для react native
+express-validation validation.js RegExp для валидации

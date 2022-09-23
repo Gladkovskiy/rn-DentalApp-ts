@@ -5,7 +5,9 @@ import styled from 'styled-components/native'
 import {NavigationProps} from '../types/navigation'
 
 import {IUserInfo} from '../types/user'
-import Diagnos from '../components/StyledComponents/GrayText'
+import {GreyText} from './StyledComponents/Text'
+import SwipeableItem from './SwipeableItem'
+import SwipeableSettings from './SwipeableSettings'
 
 interface IGroupItem {
   usersInfo: IUserInfo
@@ -14,51 +16,57 @@ interface IGroupItem {
 const ListItem: FC<IGroupItem> = ({
   usersInfo: {
     active = false,
-    diagnos,
+    service: {diagnos},
     time,
-    user: {avatar, fullname, phone},
+    patient: {avatar, fullname, phone},
   },
 }) => {
   const {navigate} = useNavigation<NavigationProps>()
 
   return (
-    <GroupItem
-      onPress={() =>
-        navigate('PacientScreen', {user: {avatar, fullname, phone}})
-      }
-    >
-      <Avatar
-        source={{
-          uri: avatar,
-        }}
-      />
-      <View style={{flex: 1}}>
-        <FullName>{fullname}</FullName>
-        <Diagnos>{diagnos}</Diagnos>
-      </View>
-      <GroupDate active={active}>{time}</GroupDate>
-    </GroupItem>
+    <SwipeableItem renderLeftAction={SwipeableSettings}>
+      <GroupItem
+        onPress={() =>
+          navigate('PacientScreen', {patient: {avatar, fullname, phone}})
+        }
+      >
+        <Avatar
+          source={{
+            uri: avatar,
+          }}
+        />
+        <View style={{flex: 1}}>
+          <FullName>{fullname}</FullName>
+          <GreyText>{diagnos}</GreyText>
+        </View>
+        <GroupDate active={active}>{time}</GroupDate>
+      </GroupItem>
+    </SwipeableItem>
   )
 }
 
 export default ListItem
 
-const GroupItem = styled.TouchableOpacity`
+export const GroupItem = styled.TouchableOpacity`
   padding: 20px 0;
   flex-direction: row;
   align-items: center;
-  border-bottom-width: 1px;
-  border-bottom-color: #f3f3f3;
+  border-width: 1px;
+  border-color: #ccc2c2;
+  background-color: #eaeff1;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 5px 0;
 `
 
-const Avatar = styled.Image`
+export const Avatar = styled.Image`
   width: 40px;
   height: 40px;
   border-radius: 20px;
   margin-right: 15px;
 `
 
-const FullName = styled.Text`
+export const FullName = styled.Text`
   font-size: 16px;
   font-weight: 800;
 `

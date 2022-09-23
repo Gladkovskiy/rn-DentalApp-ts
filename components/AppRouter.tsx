@@ -1,14 +1,23 @@
 import React, {FC} from 'react'
-import {NavigationContainer} from '@react-navigation/native'
+import {
+  NavigationContainer,
+  NavigatorScreenParams,
+  useNavigation,
+} from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import HomeScreen from '../pages/HomeScreen'
 import PacientScreen from '../pages/PacientScreen'
 import {IUser} from '../types/user'
+import {TabNavigation, TabParamList} from './SettingsTabRouter'
+import HeaderButton from './HeaderButton'
+import AddAppoinmentScreen from '../pages/AddAppoinmentScreen'
 
 //параметры страниц описываются
 export type RootStackParamList = {
   HomeScreen: undefined
-  PacientScreen: {user: IUser}
+  PacientScreen: {patient: IUser}
+  Settings: NavigatorScreenParams<TabParamList>
+  AddAppoinment: undefined
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
@@ -29,6 +38,9 @@ const AppRouter: FC = () => {
           component={HomeScreen}
           options={{
             title: 'Пациенты',
+            headerRight: ({tintColor}) => (
+              <HeaderButton tintColor={tintColor} />
+            ),
           }}
         />
         <Stack.Screen
@@ -36,6 +48,20 @@ const AppRouter: FC = () => {
           component={PacientScreen}
           options={{
             title: 'Карта пациента',
+          }}
+        />
+        <Stack.Screen
+          name="Settings"
+          component={TabNavigation}
+          options={{
+            title: 'Настройки',
+          }}
+        />
+        <Stack.Screen
+          name="AddAppoinment"
+          component={AddAppoinmentScreen}
+          options={{
+            title: 'Добавить приём',
           }}
         />
       </Stack.Navigator>

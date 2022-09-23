@@ -3,20 +3,20 @@ import React, {FC} from 'react'
 import {View} from 'react-native'
 import styled from 'styled-components/native'
 import HistoryItem from '../components/HistoryItem'
-import Tel from '../components/StyledComponents/GrayText'
+import {GreyText} from '../components/StyledComponents/Text'
 import Button from '../components/UI/Button'
 import IconButton from '../components/UI/IconButton'
 import {PacientScreenRouteProp} from '../types/navigation'
 
 const PacientScreen: FC = () => {
   const {
-    params: {user},
+    params: {patient},
   } = useRoute<PacientScreenRouteProp>()
   return (
     <Container>
       <View style={{padding: 20}}>
-        <PacientFullName>{user.fullname}</PacientFullName>
-        <Tel>{user.phone}</Tel>
+        <PacientFullName>{patient.fullname}</PacientFullName>
+        <GreyText>{patient.phone}</GreyText>
         <ButtonContainer>
           <Button
             title="Формула зубов"

@@ -24,6 +24,13 @@ export interface IUser {
   fullname: string
   avatar: string
   phone: string
+  _id: string
+}
+
+export interface IService {
+  diagnos: string
+  price: string
+  _id: string
 }
 
 export interface IUserInfoWithDate extends IUserInfo {
@@ -31,8 +38,8 @@ export interface IUserInfoWithDate extends IUserInfo {
 }
 
 export interface IUserInfo {
-  user: IUser
-  diagnos: string
+  patient: IUser
+  service: IService
   time: string
   price: string
   active?: boolean
