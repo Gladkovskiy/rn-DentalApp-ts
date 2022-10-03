@@ -3,7 +3,6 @@ import React, {FC} from 'react'
 import {View} from 'react-native'
 import styled from 'styled-components/native'
 import {NavigationProps} from '../types/navigation'
-
 import {IUserInfo} from '../types/user'
 import {GreyText} from './StyledComponents/Text'
 import SwipeableItem from './SwipeableItem'
@@ -14,29 +13,38 @@ interface IGroupItem {
 }
 
 const ListItem: FC<IGroupItem> = ({
-  usersInfo: {
-    active = false,
-    service: {diagnos},
-    time,
-    patient: {avatar, fullname, phone},
-  },
+  usersInfo: {active = false, service, time, patient},
 }) => {
   const {navigate} = useNavigation<NavigationProps>()
+
+  //если услугу удалили, а она есть в заказах
+  let diagnos = 'Услуга удалена'
+  if (service) diagnos = service.diagnos
+  //если пациента удалили, а он есть в заказах
+  let person = {
+    avatar: '',
+    fullname: 'Данные пациента удалены',
+    phone: '',
+    _id: '',
+  }
+  if (patient) person = {...patient}
 
   return (
     <SwipeableItem renderLeftAction={SwipeableSettings}>
       <GroupItem
         onPress={() =>
-          navigate('PacientScreen', {patient: {avatar, fullname, phone}})
+          navigate('PacientScreen', {
+            patient: {...person},
+          })
         }
       >
         <Avatar
           source={{
-            uri: avatar,
+            uri: person.avatar,
           }}
         />
         <View style={{flex: 1}}>
-          <FullName>{fullname}</FullName>
+          <FullName>{person.fullname}</FullName>
           <GreyText>{diagnos}</GreyText>
         </View>
         <GroupDate active={active}>{time}</GroupDate>

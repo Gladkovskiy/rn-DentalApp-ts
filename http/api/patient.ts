@@ -1,6 +1,10 @@
 import {$host} from '.'
 import {IUser} from '../../types/user'
 
+interface IRes {
+  res: string
+}
+
 export const addPatient = async (data: FormData) => {
   const {
     data: {res},
@@ -16,5 +20,17 @@ export const searchPatient = async (fullname: string) => {
   const {data} = await $host.get<IUser[]>('/patient/search', {
     params: {fullname},
   })
+  return data
+}
+
+export const deletePatient = async (info: {_id: string}) => {
+  const {data} = await $host.delete<IRes>('/patient', {
+    params: info,
+  })
+  return data
+}
+
+export const deleteAllPatients = async () => {
+  const {data} = await $host.delete<IRes>('/patient/all')
   return data
 }

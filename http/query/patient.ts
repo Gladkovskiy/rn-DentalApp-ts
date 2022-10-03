@@ -1,10 +1,19 @@
 import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
-import {addPatient, searchPatient} from '../api/patient'
+import {
+  addPatient,
+  deleteAllPatients,
+  deletePatient,
+  searchPatient,
+} from '../api/patient'
 
 export const useAddPatient = () => {
-  // const queryClient = useQueryClient()
+  const queryClient = useQueryClient()
 
-  const mutate = useMutation(addPatient, {})
+  const mutate = useMutation(addPatient, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['searchPatient'])
+    },
+  })
   return mutate
 }
 
@@ -13,4 +22,26 @@ export const useSearchPatient = (fullname: string) => {
     searchPatient(fullname)
   )
   return query
+}
+
+export const useDeletePatient = () => {
+  const queryClient = useQueryClient()
+
+  const mutate = useMutation(deletePatient, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['searchPatient'])
+    },
+  })
+  return mutate
+}
+
+export const useDeleteAllPatients = () => {
+  const queryClient = useQueryClient()
+
+  const mutate = useMutation(deleteAllPatients, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['searchPatient'])
+    },
+  })
+  return mutate
 }

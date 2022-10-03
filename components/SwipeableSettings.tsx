@@ -1,16 +1,25 @@
 import {FC} from 'react'
-
 import styled from 'styled-components/native'
 import {MaterialIcons} from '@expo/vector-icons'
 import {Entypo} from '@expo/vector-icons'
 
-const SwipeableSettings: FC = () => {
+interface ISwipeableSettings {
+  remove?: () => void
+  update?: () => void
+}
+
+const zat = () => console.log('delete/update')
+
+const SwipeableSettings: FC<ISwipeableSettings> = ({
+  update = zat,
+  remove = zat,
+}) => {
   return (
     <Flex>
-      <IconButton>
+      <IconButton onPress={remove}>
         <MaterialIcons name="delete-forever" size={24} color="black" />
       </IconButton>
-      <IconButton>
+      <IconButton onPress={update}>
         <Entypo name="pencil" size={24} color="black" />
       </IconButton>
     </Flex>
