@@ -34,3 +34,15 @@ export const deleteAllPatients = async () => {
   const {data} = await $host.delete<IRes>('/patient/all')
   return data
 }
+
+export const updatePatient = async (data: FormData) => {
+  const {
+    data: {res},
+  } = await $host.put<IRes>('/patient', data, {
+    headers: {
+      'content-Type': 'multipart/form-data',
+    },
+  })
+
+  return res
+}

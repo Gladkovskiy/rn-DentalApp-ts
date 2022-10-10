@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 import * as FileSystem from 'expo-file-system'
-//validation.js lib isMobilePhone regExp
+
 const phoneRegExp = /^((\+?38|8)?0\d{9})|((\+?7|8)?9\d{9})$/
 
 const fileInfo = async (uri: string) => {
@@ -18,7 +18,6 @@ export const validationSchema = yup.object({
     .required('Обязательное поле'),
   img: yup
     .mixed()
-    .required('Выберите файл')
     .test('fileType', 'Не поддержуется тип файла', value => {
       const SUPPORTED_FORMATS = ['jpg', 'jpeg', 'png', 'webp']
 
@@ -39,13 +38,3 @@ export const validationSchema = yup.object({
       return true
     }),
 })
-
-export type Patient = yup.InferType<typeof validationSchema>
-
-export const initialValue: Patient = {
-  firstname: '',
-  lastname: '',
-  surname: '',
-  phone: '',
-  img: null,
-}

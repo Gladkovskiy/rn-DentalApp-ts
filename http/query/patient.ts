@@ -4,6 +4,7 @@ import {
   deleteAllPatients,
   deletePatient,
   searchPatient,
+  updatePatient,
 } from '../api/patient'
 
 export const useAddPatient = () => {
@@ -30,6 +31,7 @@ export const useDeletePatient = () => {
   const mutate = useMutation(deletePatient, {
     onSuccess: () => {
       queryClient.invalidateQueries(['searchPatient'])
+      queryClient.invalidateQueries(['users'])
     },
   })
   return mutate
@@ -41,6 +43,19 @@ export const useDeleteAllPatients = () => {
   const mutate = useMutation(deleteAllPatients, {
     onSuccess: () => {
       queryClient.invalidateQueries(['searchPatient'])
+      queryClient.invalidateQueries(['users'])
+    },
+  })
+  return mutate
+}
+
+export const useUpdatePatient = () => {
+  const queryClient = useQueryClient()
+
+  const mutate = useMutation(updatePatient, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['searchPatient'])
+      queryClient.invalidateQueries(['users'])
     },
   })
   return mutate

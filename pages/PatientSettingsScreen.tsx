@@ -2,6 +2,7 @@ import React, {FC, useState} from 'react'
 import styled from 'styled-components/native'
 import DeleteAllPatients from '../components/DeleteAllPatients'
 import AddPatient from '../components/Modal/AddPatient'
+import UpdatePatient from '../components/Modal/UpdatePatient'
 import PatientsSearchResult from '../components/PatientsSearchResult'
 import SearchInput from '../components/UI/SearchInput'
 
@@ -21,6 +22,7 @@ const PatientSettingsScreen: FC = () => {
         label={'Изменить или удалить данные пациента'}
       />
       <PatientsSearchResult search={search} />
+      <UpdatePatient />
     </Container>
   )
 }

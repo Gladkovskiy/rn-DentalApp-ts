@@ -116,7 +116,7 @@ const AddPatient: FC = () => {
 
                 <ViewMarginTop>
                   <Button
-                    title="выберите автарку"
+                    title="выберите аватарку"
                     onPress={() => pickAvatar(setFieldValue)}
                   />
                   {errors.img && <ErrorText>{errors.img}</ErrorText>}

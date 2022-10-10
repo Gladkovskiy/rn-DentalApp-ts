@@ -2,6 +2,7 @@ import {useNavigation} from '@react-navigation/native'
 import React, {FC} from 'react'
 import {View} from 'react-native'
 import styled from 'styled-components/native'
+import {baseURLStatic} from '../http/api'
 import {NavigationProps} from '../types/navigation'
 import {IUserInfo} from '../types/user'
 import {GreyText} from './StyledComponents/Text'
@@ -40,7 +41,7 @@ const ListItem: FC<IGroupItem> = ({
       >
         <Avatar
           source={{
-            uri: person.avatar,
+            uri: `${baseURLStatic}${person.avatar}`,
           }}
         />
         <View style={{flex: 1}}>

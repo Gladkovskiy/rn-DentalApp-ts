@@ -1,16 +1,15 @@
-import React, {FC} from 'react'
 import {
   NavigationContainer,
   NavigatorScreenParams,
-  useNavigation,
 } from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
+import React, {FC} from 'react'
+import AddAppoinmentScreen from '../pages/AddAppoinmentScreen'
 import HomeScreen from '../pages/HomeScreen'
 import PacientScreen from '../pages/PacientScreen'
 import {IUser} from '../types/user'
-import {TabNavigation, TabParamList} from './SettingsTabRouter'
 import HeaderButton from './HeaderButton'
-import AddAppoinmentScreen from '../pages/AddAppoinmentScreen'
+import {TabNavigation, TabParamList} from './SettingsTabRouter'
 
 //параметры страниц описываются
 export type RootStackParamList = {

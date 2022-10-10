@@ -1,4 +1,4 @@
-import {AntDesign, Ionicons} from '@expo/vector-icons'
+import {Ionicons} from '@expo/vector-icons'
 import {useNavigation} from '@react-navigation/native'
 import React, {FC} from 'react'
 import styled from 'styled-components/native'
@@ -13,9 +13,6 @@ const HeaderButton: FC<IHeaderButton> = ({tintColor}) => {
   const {navigate} = useNavigation<NavigationProps>()
   return (
     <FlexCenter>
-      <OpacityButton onPress={() => navigate('AddAppoinment')}>
-        <AntDesign name="pluscircle" size={35} color={tintColor} />
-      </OpacityButton>
       <OpacityButton
         onPress={() => navigate('Settings', {screen: 'patientSettings'})}
       >

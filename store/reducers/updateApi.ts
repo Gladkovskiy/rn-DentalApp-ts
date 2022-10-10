@@ -1,10 +1,12 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {IInitialState} from '../../types/updateApiReducer'
-import {IService} from '../../types/user'
+import {IService, IUser} from '../../types/user'
 
 const initialState: IInitialState = {
   service: {_id: '', diagnos: '', price: ''},
   isVisibleService: false,
+  patient: {_id: '', avatar: '', fullname: '', phone: ''},
+  isVisiblePatient: false,
 }
 
 //иммутабельность, не надо разворачивать state
@@ -20,6 +22,15 @@ export const updateApi = createSlice({
     },
     resetVisibleService: state => {
       state.isVisibleService = false
+    },
+    setPatient: (state, action: PayloadAction<IUser>) => {
+      state.patient = {...action.payload}
+    },
+    setVisiblePatient: state => {
+      state.isVisiblePatient = true
+    },
+    resetVisiblePatient: state => {
+      state.isVisiblePatient = false
     },
   },
 })
