@@ -1,6 +1,8 @@
 import React, {FC} from 'react'
+import {ButtonProps} from 'react-native'
 import styled from 'styled-components/native'
 import {Spinner} from '../StyledComponents/Spinner'
+import {lighten} from 'polished'
 
 interface IButton {
   title: string
@@ -27,13 +29,14 @@ const Button: FC<IButton> = ({
 
 export default Button
 
-interface IBtn {
+interface IBtn extends ButtonProps {
   bg: string
 }
 const Btn = styled.TouchableOpacity<IBtn>`
   padding: 10px;
   border-radius: 30px;
-  background-color: ${({bg}) => bg};
+
+  background-color: ${({bg, disabled}) => (!disabled ? bg : lighten(0.2, bg))};
   align-items: center;
   justify-content: center;
   height: 45px;

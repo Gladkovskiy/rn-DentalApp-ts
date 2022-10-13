@@ -56,13 +56,17 @@ const ListItem: FC<IGroupItem> = ({
 
 export default ListItem
 
-export const GroupItem = styled.TouchableOpacity`
+interface IGroupItem {
+  active?: boolean
+}
+export const GroupItem = styled.TouchableOpacity<IGroupItem>`
   padding: 20px 0;
   flex-direction: row;
   align-items: center;
   border-width: 1px;
   border-color: #ccc2c2;
-  background-color: #eaeff1;
+  background-color: ${({active}) => (active ? '#e7b4d0' : '#eaeff1')};
+  /* background-color: #eaeff1; */
   border-radius: 10px;
   padding: 10px;
   margin: 5px 0;

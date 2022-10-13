@@ -1,13 +1,17 @@
 import DateTimePicker from '@react-native-community/datetimepicker'
 import React, {FC, useState} from 'react'
 import Button from './UI/Button'
-import {SetFieldValue} from '../types/formik'
+import {SetFieldTouched, SetFieldValue} from '../types/formik'
 
 interface IPickDateandTime {
   setFieldValue: SetFieldValue
+  setFieldTouched: SetFieldTouched
 }
 
-const PickDateandTime: FC<IPickDateandTime> = ({setFieldValue}) => {
+const PickDateandTime: FC<IPickDateandTime> = ({
+  setFieldValue,
+  setFieldTouched,
+}) => {
   const [isVisibleDate, setVisibleDate] = useState(false)
   const [isVisibleTime, setVisibleTime] = useState(false)
 
@@ -23,8 +27,10 @@ const PickDateandTime: FC<IPickDateandTime> = ({setFieldValue}) => {
           minimumDate={new Date()}
           onChange={(event, date) => {
             setVisibleDate(false)
-            if (event.type === 'set')
+            if (event.type === 'set') {
+              setFieldTouched('date', true)
               setFieldValue('date', date?.toLocaleDateString())
+            }
           }}
         />
       )}
@@ -44,6 +50,7 @@ const PickDateandTime: FC<IPickDateandTime> = ({setFieldValue}) => {
               temp[2] = '00'
               time = temp.join(':')
             }
+            setFieldTouched('time', true)
             setFieldValue('time', time)
           }}
         />

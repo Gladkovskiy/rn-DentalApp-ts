@@ -7,11 +7,19 @@ interface IPatientItem {
   avatar: string
   fullname: string
   phone: string
+  active?: boolean
+  onPress?: () => void
 }
 
-const PatientItem: FC<IPatientItem> = ({avatar, fullname, phone}) => {
+const PatientItem: FC<IPatientItem> = ({
+  avatar,
+  fullname,
+  phone,
+  active = false,
+  onPress = null,
+}) => {
   return (
-    <GroupItem>
+    <GroupItem active={active} onPress={onPress}>
       <Avatar
         source={{
           uri: avatar,

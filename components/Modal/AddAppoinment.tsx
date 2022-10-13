@@ -5,19 +5,37 @@ import {Modal} from 'react-native'
 import styled from 'styled-components/native'
 import * as service from '../../formik/addAppointment'
 import PickDateandTime from '../PickDateandTime'
+import PreviewAppointment from '../PreviewAppointment'
 import SelectDent from '../SelectDent'
+import {Container} from '../StyledComponents/Container'
+import Button from '../UI/Button'
 import SelectPatient from './SelectPatient'
 import SelectService from './SelectService'
-import {Container} from '../StyledComponents/Container'
-import {BlackText} from '../StyledComponents/Text'
-import Button from '../UI/Button'
 
 const AddAppoinment: FC = () => {
   const [isVisible, setVisible] = useState(false)
+  const [patientFullname, setPatientFullname] = useState('')
+  const [serviceType, setServiceType] = useState('')
 
   const submit = (values: service.Appointment) => {
     console.log(values)
   }
+
+  const cancel = () => {
+    setVisible(state => !state)
+    setPatientFullname('')
+    setServiceType('')
+  }
+
+  const previewInfo = (
+    values: service.Appointment,
+    patient: string,
+    service: string
+  ): service.Appointment => ({
+    ...values,
+    patient,
+    service,
+  })
 
   return (
     <>
@@ -26,46 +44,51 @@ const AddAppoinment: FC = () => {
           setVisible(true)
         }}
       >
-        <AntDesign
-          name="pluscircle"
-          size={50}
-          color="rgba(42, 134, 255, 0.7)"
-        />
+        <AntDesign name="pluscircle" size={50} color="#2a86ffb2" />
       </OpacityButton>
       <Modal animationType="slide" visible={isVisible}>
-        <Formik {...service} onSubmit={submit}>
+        <Formik {...service} onSubmit={submit} validateOnChange>
           {({
             values,
             errors,
-            handleChange,
+            touched,
             handleSubmit,
-            handleBlur,
             setFieldValue,
+            setFieldTouched,
           }) => (
             <Container>
               <FlexGrow2>
-                <PickDateandTime setFieldValue={setFieldValue} />
+                <PickDateandTime
+                  setFieldValue={setFieldValue}
+                  setFieldTouched={setFieldTouched}
+                />
                 <SelectDent
                   dentNumber={values.dentNumber}
                   setFieldValue={setFieldValue}
+                  setFieldTouched={setFieldTouched}
                 />
-                <SelectPatient />
-                <SelectService />
+                <SelectPatient
+                  setFieldValue={setFieldValue}
+                  setPatientFullname={setPatientFullname}
+                  setFieldTouched={setFieldTouched}
+                />
+                <SelectService
+                  setFieldValue={setFieldValue}
+                  setServiceType={setServiceType}
+                  setFieldTouched={setFieldTouched}
+                />
                 <FlexGrow1>
-                  <BlackText>Дата: {values.date}</BlackText>
-                  <BlackText>Время: {values.time}</BlackText>
-                  <BlackText>Зуб номер: {values.dentNumber}</BlackText>
-                  <BlackText>Пациент: {values.patient}</BlackText>
-                  <BlackText>Услуга: {values.service}</BlackText>
+                  <PreviewAppointment
+                    values={previewInfo(values, patientFullname, serviceType)}
+                    errors={errors}
+                    touched={touched}
+                  />
                 </FlexGrow1>
               </FlexGrow2>
 
               <FlexGrow1>
                 <Button title="добавить" onPress={handleSubmit} />
-                <Button
-                  title="отмена"
-                  onPress={() => setVisible(state => !state)}
-                />
+                <Button title="отмена" onPress={cancel} />
               </FlexGrow1>
             </Container>
           )}

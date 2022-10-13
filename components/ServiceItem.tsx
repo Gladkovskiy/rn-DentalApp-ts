@@ -4,9 +4,19 @@ import {IService} from '../types/user'
 import {FullName, GroupItem} from './ListItem'
 import {GreyText} from './StyledComponents/Text'
 
-const ServiceItem: FC<IService> = ({diagnos, price}) => {
+interface IServiceItem {
+  active?: boolean
+  onPress?: () => void
+}
+
+const ServiceItem: FC<IService & IServiceItem> = ({
+  diagnos,
+  price,
+  active,
+  onPress,
+}) => {
   return (
-    <GroupItem>
+    <GroupItem active={active} onPress={onPress}>
       <FlexGrow2>
         <FullName>{diagnos}</FullName>
       </FlexGrow2>
