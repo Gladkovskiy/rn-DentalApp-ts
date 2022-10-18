@@ -43,6 +43,8 @@ export interface IUserInfo {
   time: string
   price: string
   active?: boolean
+  _id: string
+  dentNumber: number
 }
 export interface IDateInfo {
   data: IUserInfo[]

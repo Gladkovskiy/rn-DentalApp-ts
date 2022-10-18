@@ -4,6 +4,7 @@ import React, {FC, useState} from 'react'
 import {Modal} from 'react-native'
 import styled from 'styled-components/native'
 import * as service from '../../formik/addAppointment'
+import {useAddAppointment} from '../../http/query/appointment'
 import PickDateandTime from '../PickDateandTime'
 import PreviewAppointment from '../PreviewAppointment'
 import SelectDent from '../SelectDent'
@@ -16,9 +17,24 @@ const AddAppoinment: FC = () => {
   const [isVisible, setVisible] = useState(false)
   const [patientFullname, setPatientFullname] = useState('')
   const [serviceType, setServiceType] = useState('')
+  const addAppoinment = useAddAppointment()
 
   const submit = (values: service.Appointment) => {
-    console.log(values)
+    const date = values.date.split('.').reverse().join('-')
+    const fullDate = Date.parse(`${date}T${values.time}.000`)
+
+    addAppoinment
+      .mutateAsync({
+        date: fullDate,
+        dentNumber: values.dentNumber,
+        patient: values.patient,
+        service: values.service,
+      })
+      .then(() => {
+        setVisible(false)
+        setServiceType('')
+        setPatientFullname('')
+      })
   }
 
   const cancel = () => {

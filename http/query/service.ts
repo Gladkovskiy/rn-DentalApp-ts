@@ -31,7 +31,7 @@ export const useDeleteService = () => {
   const mutate = useMutation(deleteService, {
     onSuccess: () => {
       queryClient.invalidateQueries(['searchService'])
-      queryClient.invalidateQueries(['users'])
+      queryClient.invalidateQueries(['appoinment'])
     },
   })
   return mutate
@@ -43,7 +43,7 @@ export const useDeleteAllServices = () => {
   const mutate = useMutation(deleteAllServices, {
     onSuccess: () => {
       queryClient.invalidateQueries(['searchService'])
-      queryClient.invalidateQueries(['users'])
+      queryClient.invalidateQueries(['appoinment'])
     },
   })
   return mutate
@@ -55,7 +55,7 @@ export const useUpdateService = () => {
   const mutate = useMutation(updateService, {
     onSuccess: () => {
       queryClient.invalidateQueries(['searchService'])
-      queryClient.invalidateQueries(['users'])
+      queryClient.invalidateQueries(['appoinment'])
     },
   })
   return mutate

@@ -31,7 +31,7 @@ export const useDeletePatient = () => {
   const mutate = useMutation(deletePatient, {
     onSuccess: () => {
       queryClient.invalidateQueries(['searchPatient'])
-      queryClient.invalidateQueries(['users'])
+      queryClient.invalidateQueries(['appoinment'])
     },
   })
   return mutate
@@ -43,7 +43,7 @@ export const useDeleteAllPatients = () => {
   const mutate = useMutation(deleteAllPatients, {
     onSuccess: () => {
       queryClient.invalidateQueries(['searchPatient'])
-      queryClient.invalidateQueries(['users'])
+      queryClient.invalidateQueries(['appoinment'])
     },
   })
   return mutate
@@ -55,7 +55,7 @@ export const useUpdatePatient = () => {
   const mutate = useMutation(updatePatient, {
     onSuccess: () => {
       queryClient.invalidateQueries(['searchPatient'])
-      queryClient.invalidateQueries(['users'])
+      queryClient.invalidateQueries(['appoinment'])
     },
   })
   return mutate

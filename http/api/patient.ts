@@ -1,9 +1,6 @@
 import {$host} from '.'
+import {IRes} from '../../types/api'
 import {IUser} from '../../types/user'
-
-interface IRes {
-  res: string
-}
 
 export const addPatient = async (data: FormData) => {
   const {

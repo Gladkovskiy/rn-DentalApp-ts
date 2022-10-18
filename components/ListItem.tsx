@@ -1,22 +1,30 @@
 import {useNavigation} from '@react-navigation/native'
-import React, {FC} from 'react'
+import React, {FC, useRef} from 'react'
 import {View} from 'react-native'
 import styled from 'styled-components/native'
+import {useActionUpdate} from '../hooks/useAction'
 import {baseURLStatic} from '../http/api'
+import {useDeleteAppointment} from '../http/query/appointment'
 import {NavigationProps} from '../types/navigation'
 import {IUserInfo} from '../types/user'
 import {GreyText} from './StyledComponents/Text'
 import SwipeableItem from './SwipeableItem'
 import SwipeableSettings from './SwipeableSettings'
+import {Swipeable} from 'react-native-gesture-handler'
 
 interface IGroupItem {
   usersInfo: IUserInfo
+  date: string
 }
 
 const ListItem: FC<IGroupItem> = ({
-  usersInfo: {active = false, service, time, patient},
+  usersInfo: {active = false, service, time, patient, _id, price, dentNumber},
+  date,
 }) => {
   const {navigate} = useNavigation<NavigationProps>()
+  const deleteAppoinment = useDeleteAppointment()
+  const {setApoinment, setVisibleApoinment} = useActionUpdate()
+  const swipRef = useRef<Swipeable>(null)
 
   //если услугу удалили, а она есть в заказах
   let diagnos = 'Услуга удалена'
@@ -30,8 +38,34 @@ const ListItem: FC<IGroupItem> = ({
   }
   if (patient) person = {...patient}
 
+  const update = ({_id, patient, service, time}: IUserInfo, date: string) => {
+    const dateAndTime = `${date} ${time}`
+
+    setApoinment({
+      dentNumber,
+      _id,
+      patient,
+      service,
+      time: dateAndTime,
+      price: service.price,
+    })
+    setVisibleApoinment()
+  }
+
+  const renderLeftAction = (_id: string) => (
+    <SwipeableSettings
+      remove={() => {
+        deleteAppoinment.mutate({_id})
+      }}
+      update={() => {
+        update({_id, patient, service, time, price, dentNumber}, date)
+        swipRef.current?.close()
+      }}
+    />
+  )
+
   return (
-    <SwipeableItem renderLeftAction={SwipeableSettings}>
+    <SwipeableItem renderLeftAction={() => renderLeftAction(_id)} ref={swipRef}>
       <GroupItem
         onPress={() =>
           navigate('PacientScreen', {

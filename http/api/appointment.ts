@@ -1,4 +1,10 @@
 import {$host} from '.'
+import {
+  ApiAddAppoinment,
+  ApiUpdateAppoinment,
+  IRes,
+  Routes,
+} from '../../types/api'
 import {IDateInfo} from '../../types/user'
 
 /* export const getAppointment = async () => {
@@ -54,8 +60,38 @@ import {IDateInfo} from '../../types/user'
 
 export const getAppointment = async () => {
   try {
-    const {data} = await $host.get<IDateInfo[]>('/appoinment')
-    console.log(data)
+    const {data} = await $host.get<IDateInfo[]>(Routes.appoinment)
+
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const addAppointment = async (appoinment: ApiAddAppoinment) => {
+  try {
+    const {data} = await $host.post<IRes>(Routes.appoinment, appoinment)
+
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const deleteAppointment = async (info: {_id: string}) => {
+  try {
+    const {data} = await $host.delete<IRes>(Routes.appoinment, {params: info})
+
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const updateAppointment = async (appoinment: ApiUpdateAppoinment) => {
+  try {
+    const {data} = await $host.put<IRes>(Routes.appoinment, appoinment)
+
     return data
   } catch (error) {
     console.log(error)

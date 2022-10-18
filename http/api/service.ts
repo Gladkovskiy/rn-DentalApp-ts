@@ -1,9 +1,6 @@
 import {$host} from '.'
+import {IRes} from '../../types/api'
 import {IService} from '../../types/user'
-
-interface IRes {
-  res: string
-}
 
 export const addService = async (data: IService) => {
   const {

@@ -19,7 +19,7 @@ const PreviewAppointment: FC<IPreviewAppoinment> = ({
   const error = {...errors}
   const touch = {...touched}
   const name: string[] = ['Дата', 'Время', 'Номер зуба', 'Пациент', 'Услуга']
-  console.log(touch)
+
   return (
     <>
       {Object.keys(info).map((item, index) => {
