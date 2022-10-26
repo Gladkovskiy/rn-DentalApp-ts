@@ -4,6 +4,7 @@ import {
 } from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import React, {FC} from 'react'
+import {useAppSelector} from '../hooks/useSelector'
 import AddAppoinmentScreen from '../pages/AddAppoinmentScreen'
 import HomeScreen from '../pages/HomeScreen'
 import PacientScreen from '../pages/PacientScreen'
@@ -22,6 +23,7 @@ export type RootStackParamList = {
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
 const AppRouter: FC = () => {
+  const {isAuth} = useAppSelector(state => state.persistedAuthReducer)
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -36,10 +38,9 @@ const AppRouter: FC = () => {
           name="HomeScreen"
           component={HomeScreen}
           options={{
-            title: 'Пациенты',
-            headerRight: ({tintColor}) => (
-              <HeaderButton tintColor={tintColor} />
-            ),
+            title: isAuth ? 'Пациенты' : 'Авторизация',
+            headerRight: ({tintColor}) =>
+              isAuth && <HeaderButton tintColor={tintColor} />,
           }}
         />
         <Stack.Screen
