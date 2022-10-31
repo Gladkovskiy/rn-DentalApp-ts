@@ -4,15 +4,23 @@ import styled from 'styled-components/native'
 interface IEnterPin {
   activeLength: number
   pinLength: number
-  error?: boolean
+  isError?: boolean
+  isLoading?: boolean
 }
 
-const EnterPin: FC<IEnterPin> = ({pinLength, activeLength, error = false}) => {
+const EnterPin: FC<IEnterPin> = ({
+  pinLength,
+  activeLength,
+  isError,
+  isLoading,
+}) => {
   const arrPin = useMemo(() => Array(pinLength).fill(''), [pinLength])
 
   return (
     <>
-      {!error ? (
+      {isLoading ? (
+        <TitleText>Авторизация</TitleText>
+      ) : !isError || activeLength < pinLength ? (
         <TitleText>Введите PIN</TitleText>
       ) : (
         <ErrorText>Неправильный PIN</ErrorText>

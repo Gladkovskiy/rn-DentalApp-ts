@@ -7,9 +7,16 @@ import NumberPanel from './NumberPanel'
 interface IAuth {
   func: (pin: string) => void
   pinLength?: 3 | 4 | 5 | 6
+  isError?: boolean
+  isLoading?: boolean
 }
 
-const Auth: FC<IAuth> = ({func, pinLength = 6}) => {
+const Auth: FC<IAuth> = ({
+  func,
+  pinLength = 6,
+  isError = false,
+  isLoading = false,
+}) => {
   const [pin, setPin] = useState('')
 
   const enterPin = (number: string) => () => {
@@ -32,7 +39,13 @@ const Auth: FC<IAuth> = ({func, pinLength = 6}) => {
   return (
     <ContainerCenter>
       <AuthContainer>
-        <EnterPin activeLength={pin.length} pinLength={pinLength} />
+        <EnterPin
+          activeLength={pin.length}
+          pinLength={pinLength}
+          isError={isError}
+          isLoading={isLoading}
+        />
+
         <NumberPanel setPin={enterPin} />
       </AuthContainer>
     </ContainerCenter>

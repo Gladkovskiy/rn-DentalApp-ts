@@ -38,7 +38,7 @@ const AppRouter: FC = () => {
           name="HomeScreen"
           component={HomeScreen}
           options={{
-            title: isAuth ? 'Пациенты' : 'Авторизация',
+            title: isAuth ? 'Приёмы' : 'Авторизация',
             headerRight: ({tintColor}) =>
               isAuth && <HeaderButton tintColor={tintColor} />,
           }}

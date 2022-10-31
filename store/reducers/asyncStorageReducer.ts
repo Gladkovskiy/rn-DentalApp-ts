@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 
-interface IUserInfo {
+export interface IUserInfo {
   _id: string
   role: string
   login: string

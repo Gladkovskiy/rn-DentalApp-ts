@@ -1,8 +1,3 @@
-export enum Routes {
-  patient = '/patient',
-  appoinment = '/appoinment',
-}
-
 export interface IRes {
   res: string
 }

@@ -24,3 +24,15 @@ const authInterceptor = (config: AxiosRequestConfig) => {
 }
 
 $authHost.interceptors.request.use(authInterceptor)
+
+export enum Routs {
+  PATIENT = '/patient',
+  PATIENT_SEARCH = '/patient/search',
+  PATIENT_DELETE_ALL = '/patient/all',
+  SERVICE = '/service',
+  SERVICE_SEARCH = '/service/search',
+  SERVICE_DELETE_ALL = '/service/all',
+  APPOINTMENT = '/appoinment',
+  LOGIN = '/login',
+  LOGIN_CREATE = '/login/create',
+}
